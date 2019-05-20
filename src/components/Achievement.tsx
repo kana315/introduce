@@ -1,6 +1,13 @@
 import React from "react";
-import { Card as SemanticCard, Header, Image } from "semantic-ui-react";
+import {
+  Card as SemanticCard,
+  Header,
+  Image,
+  Icon,
+  Button
+} from "semantic-ui-react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const DefaultImage = () => (
   <Image
@@ -13,17 +20,25 @@ const DefaultImage = () => (
 const Achievement: React.FC = () => {
   return (
     <>
-      <Header as="h1" dividing>
-        Achievements
-      </Header>
+      <Title>
+        <Header as="h1" icon>
+          <Icon name="chess knight" />
+          Achievements
+          <Header.Subheader>---研修でつくってきたもの---</Header.Subheader>
+        </Header>
+      </Title>
       <Container>
         <Wrapper>
           <Card>
             <DefaultImage />
             <Card.Content>
-              <Card.Header>Title1</Card.Header>
+              <Card.Header>ReactでHP製作</Card.Header>
               <Card.Meta>2019/5/17</Card.Meta>
-              <Card.Description>Writing...</Card.Description>
+              <Card.Description>
+                <Button>
+                  <Link to="/achievement/1">詳細</Link>
+                </Button>
+              </Card.Description>
             </Card.Content>
           </Card>
           <Card>
@@ -31,7 +46,11 @@ const Achievement: React.FC = () => {
             <Card.Content>
               <Card.Header>Title2</Card.Header>
               <Card.Meta>2019/5/17</Card.Meta>
-              <Card.Description>Writing...</Card.Description>
+              <Card.Description>
+                <Button>
+                  <Link to="/achievement/2">詳細</Link>
+                </Button>
+              </Card.Description>
             </Card.Content>
           </Card>
           <Card>
@@ -39,7 +58,11 @@ const Achievement: React.FC = () => {
             <Card.Content>
               <Card.Header>Title3</Card.Header>
               <Card.Meta>2019/5/17</Card.Meta>
-              <Card.Description>Writing...</Card.Description>
+              <Card.Description>
+                <Button>
+                  <Link to="/achievement/3">詳細</Link>
+                </Button>
+              </Card.Description>
             </Card.Content>
           </Card>
           <Card>
@@ -47,7 +70,11 @@ const Achievement: React.FC = () => {
             <Card.Content>
               <Card.Header>Title4</Card.Header>
               <Card.Meta>2019/5/17</Card.Meta>
-              <Card.Description>Writing...</Card.Description>
+              <Card.Description>
+                <Button>
+                  <Link to="/achievement/4">詳細</Link>
+                </Button>
+              </Card.Description>
             </Card.Content>
           </Card>
         </Wrapper>
@@ -55,6 +82,12 @@ const Achievement: React.FC = () => {
     </>
   );
 };
+
+const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+`;
 
 const Card: any = styled(SemanticCard)`
   margin: 10px !important;

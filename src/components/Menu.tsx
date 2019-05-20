@@ -1,30 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { List, Icon } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 
-const Menu: React.FC = () => {
+const TopMenu: React.FC = () => {
   return (
-    <List celled horizontal link>
-      <List.Item>
-        <Link to="/">
-          <Icon name="home" />
-          Home
-        </Link>
-      </List.Item>
-      <List.Item>
-        <Link to="/achievements">
-          <Icon name="folder outline" />
-          Achievements
-        </Link>
-      </List.Item>
-      <List.Item>
-        <Link to="/reviews">
-          <Icon name="book" />
-          Reviews
-        </Link>
-      </List.Item>
-    </List>
+    <>
+      <Menu inverted>
+        <Menu.Item as="a">
+          <Link to="/">
+            <Icon name="home" />
+            Home
+          </Link>
+        </Menu.Item>
+        <Menu.Item as="a">
+          <Link to="/achievements">
+            <Icon name="folder outline" />
+            Achievements
+          </Link>
+        </Menu.Item>
+        <Menu.Item as="a">
+          <Link to="/reviews">
+            <Icon name="book" />
+            Reviews
+          </Link>
+        </Menu.Item>
+      </Menu>
+    </>
   );
 };
 
-export default Menu;
+export default TopMenu;

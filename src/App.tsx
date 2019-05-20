@@ -6,8 +6,10 @@ import Review from "./components/Review";
 import NoMatch from "./components/Nomatch";
 import Menu from "./components/Menu";
 import styled from "styled-components";
+import AchieveChild from "./components/AchieveChild";
+import ReviewChild from "./components/ReviewChild";
 
-function AppRouter() {
+const AppRouter: React.FC = () => {
   return (
     <Container>
       <Router>
@@ -15,13 +17,15 @@ function AppRouter() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/achievements" component={Achievement} />
+          <Route path="/achievement/:id" component={AchieveChild} />
           <Route path="/reviews/" component={Review} />
+          <Route path="/review/:id" component={ReviewChild} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
     </Container>
   );
-}
+};
 
 const Container = styled.div`
   max-width: 1000px;
