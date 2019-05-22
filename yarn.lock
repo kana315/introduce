@@ -1406,7 +1406,7 @@
     requireindex "^1.2.0"
     tsutils "^3.7.0"
 
-"@typescript-eslint/eslint-plugin@1.x":
+"@typescript-eslint/eslint-plugin@1.x", "@typescript-eslint/eslint-plugin@^1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-1.9.0.tgz#29d73006811bf2563b88891ceeff1c5ea9c8d9c6"
   integrity sha512-FOgfBorxjlBGpDIw+0LaZIXRX6GEEUfzj8LXwaQIUCp+gDOvkI+1WgugJ7SmWiISqK9Vj5r8S7NDKO/LB+6X9A==
@@ -9915,6 +9915,18 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-force-update@^1.0.4:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/use-force-update/-/use-force-update-1.0.5.tgz#9b7192f73f6cb90d592b225858c1562719d7c184"
+  integrity sha512-wUWnEzE9ezjKky/V/pyEVVjfXbOsIqshrPeD6uSaA30zzdgW6XmvuJkKB64LP6qAEZvSuEDvvaVCjrmF717uAA==
+
+use-react-router@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/use-react-router/-/use-react-router-1.0.6.tgz#7ca262482fb679388fbfaaaab3a4c60596d0b0de"
+  integrity sha512-8ASuHrmHpWbzyoMSlHyxgfWcTq/JcEn9k770vGtAIGjQGiODxEKi+WA2n347d+QLqQ6Y4poxJQJWnEkebxzmnw==
+  dependencies:
+    use-force-update "^1.0.4"
 
 use@^3.1.0:
   version "3.1.1"

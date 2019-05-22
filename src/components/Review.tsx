@@ -3,6 +3,20 @@ import { Card as SemanticCard, Header, Icon, Image } from "semantic-ui-react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+type Review = {
+  url: string;
+  reviewTitle: string;
+  imageUrl?: string;
+  date: string;
+  description: string;
+};
+
+type Props = {
+  title: string;
+  subTitle: string;
+  reviews: Review[];
+};
+
 const DefaultImage = () => (
   <Image
     src="https://react.semantic-ui.com/images/wireframe/image.png"
@@ -11,62 +25,48 @@ const DefaultImage = () => (
   />
 );
 
-const Review: React.FC = () => {
+const ReviewImage: React.FC<{ imageUrl?: string }> = ({ imageUrl }) =>
+  typeof imageUrl !== "undefined" ? (
+    <Image src={imageUrl} size="medium" />
+  ) : (
+    <DefaultImage />
+  );
+
+const ReviewCard: React.FC<Review> = ({
+  url,
+  reviewTitle,
+  imageUrl,
+  date,
+  description
+}) => {
+  return (
+    <Card>
+      <ReviewImage imageUrl={imageUrl} />
+      <Card.Content>
+        <Card.Header>
+          <Link to={url}>{reviewTitle}</Link>
+        </Card.Header>
+        <Card.Meta>{date}</Card.Meta>
+        <Card.Description>{description}</Card.Description>
+      </Card.Content>
+    </Card>
+  );
+};
+
+const Review: React.FC<Props> = ({ title, subTitle, reviews }) => {
   return (
     <>
       <Title>
         <Header as="h1" icon>
           <Icon name="chess rook" />
-          Book Reviews
-          <Header.Subheader>---今まで読んだ本の感想---</Header.Subheader>
+          {title}
+          <Header.Subheader>---{subTitle}---</Header.Subheader>
         </Header>
       </Title>
       <Wrapper>
-        <Card>
-          <DefaultImage />
-          <Card.Content>
-            <Card.Header>
-              <Link to="/review/1">
-                オブジェクト思考でなぜつくるのかオブジェクト思考でなぜつくるのかオブジェクト思考でなぜつくるのか
-              </Link>
-            </Card.Header>
-            <Card.Meta>2019/5/7</Card.Meta>
-            <Card.Description>
-              改訂第2版では、すべての文章を細かく見直して修正して、追加のトピックを記述したことに加えて、
-              多くの技術者の注目を集めている関数型言語の基本的な仕組みと思想を解説する
-            </Card.Description>
-          </Card.Content>
-        </Card>
-        <Card>
-          <DefaultImage />
-          <Card.Content>
-            <Card.Header>
-              <Link to="/review/2">あああ</Link>
-            </Card.Header>
-            <Card.Meta>2019/5/17</Card.Meta>
-            <Card.Description>Writing...</Card.Description>
-          </Card.Content>
-        </Card>
-        <Card>
-          <DefaultImage />
-          <Card.Content>
-            <Card.Header>
-              <Link to="/review/3">Title3</Link>
-            </Card.Header>
-            <Card.Meta>2019/5/17</Card.Meta>
-            <Card.Description>Writing...</Card.Description>
-          </Card.Content>
-        </Card>
-        <Card>
-          <DefaultImage />
-          <Card.Content>
-            <Card.Header>
-              <Link to="/review/4">Title4</Link>
-            </Card.Header>
-            <Card.Meta>2019/5/17</Card.Meta>
-            <Card.Description>Writing...</Card.Description>
-          </Card.Content>
-        </Card>
+        {reviews.map((v, i) => {
+          return <ReviewCard key={i} {...v} />;
+        })}
       </Wrapper>
     </>
   );

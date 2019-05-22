@@ -9,6 +9,19 @@ import {
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+type Achievement = {
+  achieveTitle: string;
+  imageUrl?: string;
+  date: string;
+  url: string;
+};
+
+type Props = {
+  title: string;
+  subTitle: string;
+  achievements: Achievement[];
+};
+
 const DefaultImage = () => (
   <Image
     src="https://react.semantic-ui.com/images/wireframe/image.png"
@@ -17,66 +30,56 @@ const DefaultImage = () => (
   />
 );
 
-const Achievement: React.FC = () => {
+const AchieveImage: React.FC<{ imageUrl?: string }> = props => {
+  console.log(props);
+
+  return typeof props.imageUrl !== "undefined" ? (
+    <Image src={props.imageUrl} size="medium" />
+  ) : (
+    <DefaultImage />
+  );
+};
+
+const CardComp: React.FC<Achievement> = ({
+  achieveTitle,
+  imageUrl,
+  date,
+  url
+}) => {
+  return (
+    <Card>
+      <AchieveImage imageUrl={imageUrl} />
+      <Card.Content>
+        <Card.Header>{achieveTitle}</Card.Header>
+        <Card.Meta>{date}</Card.Meta>
+        <Card.Description>
+          <Button>
+            <Link to={url}>詳細</Link>
+          </Button>
+        </Card.Description>
+      </Card.Content>
+    </Card>
+  );
+};
+
+const Achievement: React.FC<Props> = ({ title, subTitle, achievements }) => {
   return (
     <>
       <Title>
         <Header as="h1" icon>
           <Icon name="chess knight" />
-          Achievements
-          <Header.Subheader>---研修でつくってきたもの---</Header.Subheader>
+          {title}
+          <Header.Subheader>---{subTitle}---</Header.Subheader>
         </Header>
       </Title>
       <Container>
         <Wrapper>
-          <Card>
-            <DefaultImage />
-            <Card.Content>
-              <Card.Header>ReactでHP製作</Card.Header>
-              <Card.Meta>2019/5/17</Card.Meta>
-              <Card.Description>
-                <Button>
-                  <Link to="/achievement/1">詳細</Link>
-                </Button>
-              </Card.Description>
-            </Card.Content>
-          </Card>
-          <Card>
-            <DefaultImage />
-            <Card.Content>
-              <Card.Header>Title2</Card.Header>
-              <Card.Meta>2019/5/17</Card.Meta>
-              <Card.Description>
-                <Button>
-                  <Link to="/achievement/2">詳細</Link>
-                </Button>
-              </Card.Description>
-            </Card.Content>
-          </Card>
-          <Card>
-            <DefaultImage />
-            <Card.Content>
-              <Card.Header>Title3</Card.Header>
-              <Card.Meta>2019/5/17</Card.Meta>
-              <Card.Description>
-                <Button>
-                  <Link to="/achievement/3">詳細</Link>
-                </Button>
-              </Card.Description>
-            </Card.Content>
-          </Card>
-          <Card>
-            <DefaultImage />
-            <Card.Content>
-              <Card.Header>Title4</Card.Header>
-              <Card.Meta>2019/5/17</Card.Meta>
-              <Card.Description>
-                <Button>
-                  <Link to="/achievement/4">詳細</Link>
-                </Button>
-              </Card.Description>
-            </Card.Content>
-          </Card>
+          {achievements.map((v, i) => (
+            <CardComp key={`card-comp-${i}`} {...v} />
+          ))}
+          {achievements.map((v, i) => (
+            <CardComp key={`card-comp2-${i}`} {...v} />
+          ))}
         </Wrapper>
       </Container>
     </>
