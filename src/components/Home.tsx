@@ -2,7 +2,7 @@ import React from "react";
 import { Header, Segment, Icon, Container } from "semantic-ui-react";
 import styled from "styled-components";
 
-type Props = {
+export type Props = {
   title: string;
   subTitle: string;
   name: string;

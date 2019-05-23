@@ -7,7 +7,7 @@ import {
   Button
 } from "semantic-ui-react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import useReactRouter from "use-react-router";
 
 type Achievement = {
   achieveTitle: string;
@@ -46,6 +46,8 @@ const CardComp: React.FC<Achievement> = ({
   date,
   url
 }) => {
+  const { history } = useReactRouter();
+  console.log(history);
   return (
     <Card>
       <AchieveImage imageUrl={imageUrl} />
@@ -53,9 +55,7 @@ const CardComp: React.FC<Achievement> = ({
         <Card.Header>{achieveTitle}</Card.Header>
         <Card.Meta>{date}</Card.Meta>
         <Card.Description>
-          <Button>
-            <Link to={url}>詳細</Link>
-          </Button>
+          <Button onClick={() => history.push(url)}>詳細</Button>
         </Card.Description>
       </Card.Content>
     </Card>
