@@ -1,14 +1,30 @@
 import React from "react";
-import { Header, Segment } from "semantic-ui-react";
+import { Header, Segment, Image } from "semantic-ui-react";
 import styled from "styled-components";
 
 type Props = {
   title: string;
   date: string;
+  imageUrl?: string;
   review: string;
 };
 
-const Child: React.FC<Props> = ({ title, date, review }) => {
+const DefaultImage = () => (
+  <Image
+    src="https://react.semantic-ui.com/images/wireframe/image.png"
+    size="medium"
+    disabled
+  />
+);
+
+const ReviewImage: React.FC<{ imageUrl?: string }> = ({ imageUrl }) =>
+  typeof imageUrl !== "undefined" ? (
+    <Image src={imageUrl} size="medium" />
+  ) : (
+    <DefaultImage />
+  );
+
+const Child: React.FC<Props> = ({ title, date, imageUrl, review }) => {
   return (
     <>
       <Container>
@@ -16,6 +32,7 @@ const Child: React.FC<Props> = ({ title, date, review }) => {
           {title}
           <Header.Subheader>{date}</Header.Subheader>
         </Header>
+        <ReviewImage imageUrl={imageUrl} />
         <Segment padded>{review}</Segment>
       </Container>
     </>
