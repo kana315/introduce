@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 
-const Client = () => {
+const Client = <T extends object>(): Promise<T> => {
   return axios({
     method: "GET",
     url: "http://localhost:4567",
     headers: { "Content-Type": "application/json" }
-  }).then((res: AxiosResponse) => {
+  }).then((res: AxiosResponse<T>) => {
     return res.data;
   });
 };

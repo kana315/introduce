@@ -8,11 +8,11 @@ end
 
 path = "./db.yml"
 yaml = YAML.load_file(path)
-pp yaml["data"]["title"]
 
 get "/" do
   response.headers["Access-Control-Allow-Origin"] = "*"
   content_type :json
-  data = yaml["data"]["title"]
+  data = yaml["data"]
+  # pp data #Debug
   data.to_json
 end
