@@ -3,18 +3,18 @@ import { Card as SemanticCard, Header, Icon, Image } from "semantic-ui-react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-type Review = {
-  url: string;
-  reviewTitle: string;
+export type ReviewChild = {
+  id: string | number;
+  title: string;
   imageUrl?: string;
   date: string;
   description: string;
 };
 
-type Props = {
+export type ReviewPage = {
   title: string;
   subTitle: string;
-  reviews: Review[];
+  reviews: ReviewChild[];
 };
 
 const DefaultImage = () => (
@@ -32,9 +32,9 @@ const ReviewImage: React.FC<{ imageUrl?: string }> = ({ imageUrl }) =>
     <DefaultImage />
   );
 
-const ReviewCard: React.FC<Review> = ({
-  url,
-  reviewTitle,
+const ReviewCard: React.FC<ReviewChild> = ({
+  id,
+  title,
   imageUrl,
   date,
   description
@@ -44,7 +44,7 @@ const ReviewCard: React.FC<Review> = ({
       <ReviewImage imageUrl={imageUrl} />
       <Card.Content>
         <Card.Header>
-          <Link to={url}>{reviewTitle}</Link>
+          <Link to={`/reviews/${id}`}>{title}</Link>
         </Card.Header>
         <Card.Meta>{date}</Card.Meta>
         <Card.Description>{description}</Card.Description>
@@ -53,7 +53,7 @@ const ReviewCard: React.FC<Review> = ({
   );
 };
 
-const Review: React.FC<Props> = ({ title, subTitle, reviews }) => {
+const Review: React.FC<ReviewPage> = ({ title, subTitle, reviews }) => {
   return (
     <>
       <Title>
@@ -64,9 +64,9 @@ const Review: React.FC<Props> = ({ title, subTitle, reviews }) => {
         </Header>
       </Title>
       <Wrapper>
-        {reviews.map((v, i) => {
-          return <ReviewCard key={i} {...v} />;
-        })}
+        {reviews.map((v, i) => (
+          <ReviewCard key={i} {...v} />
+        ))}
       </Wrapper>
     </>
   );

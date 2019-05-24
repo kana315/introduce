@@ -1,32 +1,29 @@
-import React from "react";
-import Achievements from "../components/Achievement";
+import React, { useEffect, useState } from "react";
+import Achievements, { Achieve, AchieveChild } from "../components/Achievement";
+import Client from "../api/client";
+import { match as Match } from "react-router";
+import useReactRouter from "use-react-router";
 
-const title = "Achievements";
-const subTitle = "研修でつくったもの";
+const title = "";
+const subTitle = "";
 
-const achievement1 = {
-  achieveTitle: "ReactでHP製作",
-  imageUrl: "https://react.semantic-ui.com/images/wireframe/image.png",
-  date: "2019/5/17",
-  url: "/achievements/1"
-};
+const achievements: AchieveChild[] = [];
 
-const achievement2 = {
-  achieveTitle: "Title",
-  date: "2019/5/1",
-  url: "/achievements/2"
-};
-
-const achievements = [achievement1, achievement2];
-
-const props = {
+const init: Achieve = {
   title,
   subTitle,
   achievements
 };
 
 const AchieveContainer: React.FC = () => {
-  return <Achievements {...props} />;
+  const { match }: { match: Match } = useReactRouter();
+  const [state, setAchieve] = useState(init);
+  useEffect(() => {
+    Client<Achieve>(`${match.url}`).then(achievement => {
+      setAchieve(achievement);
+    });
+  }, [match.url]);
+  return <Achievements {...state} />;
 };
 
 export default AchieveContainer;

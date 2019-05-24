@@ -1,22 +1,23 @@
-import React from "react";
-import ReviewChild from "../components/ReviewChild";
+import React, { useState, useEffect } from "react";
+import { match as Match } from "react-router";
+import Child, { ReviewChild } from "../components/ReviewChild";
+import Client from "../api/client";
+import useReactRouter from "use-react-router";
 
-const title =
-  "オブジェクト思考でなぜつくるのかオブジェクト思考でなぜつくるのかオブジェクト思考でなぜつくるのか";
-const date = "2019/5/17";
-// const imageUrl = "https://react.semantic-ui.com/images/wireframe/image.png";
-const review = `改訂第2版では、すべての文章を細かく見直して修正して、追加のトピックを記述したことに加えて、
-多くの技術者の注目を集めている関数型言語の基本的な仕組みと思想を解説する改訂第2版では、すべての文章を細かく見直して修正して、追加のトピックを記述したことに加えて、
-多くの技術者の注目を集めている関数型言語の基本的な仕組みと思想を解説する
-改訂第2版では、すべての文章を細かく見直して修正して、追加のトピックを記述したことに加えて、
-多くの技術者の注目を集めている関数型言語の基本的な仕組みと思想を解説する
-改訂第2版では、すべての文章を細かく見直して修正して、追加のトピックを記述したことに加えて、
-多くの技術者の注目を集めている関数型言語の基本的な仕組みと思想を解説する`;
-
-const props = { title, date, review };
+const id = "";
+const title = "";
+const date = "";
+const description = "";
+const init: ReviewChild = { id, title, date, description };
 
 const ReviewChildContainer: React.FC = () => {
-  return <ReviewChild {...props} />;
+  const { match }: { match: Match<{ id: string }> } = useReactRouter();
+  const [state, setReview] = useState(init);
+  useEffect(() => {
+    Client<ReviewChild>(match.url).then(res => {
+      setReview(res);
+    });
+  }, [match.url]);
+  return <Child {...state} />;
 };
-
 export default ReviewChildContainer;

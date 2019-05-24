@@ -2,11 +2,12 @@ import React from "react";
 import { Header, Segment, Image } from "semantic-ui-react";
 import styled from "styled-components";
 
-type Props = {
+export type ReviewChild = {
+  id: string | number;
   title: string;
   date: string;
   imageUrl?: string;
-  review: string;
+  description: string;
 };
 
 const DefaultImage = () => (
@@ -24,7 +25,12 @@ const ReviewImage: React.FC<{ imageUrl?: string }> = ({ imageUrl }) =>
     <DefaultImage />
   );
 
-const Child: React.FC<Props> = ({ title, date, imageUrl, review }) => {
+const Child: React.FC<ReviewChild> = ({
+  title,
+  date,
+  imageUrl,
+  description
+}) => {
   return (
     <>
       <Container>
@@ -33,7 +39,7 @@ const Child: React.FC<Props> = ({ title, date, imageUrl, review }) => {
           <Header.Subheader>{date}</Header.Subheader>
         </Header>
         <ReviewImage imageUrl={imageUrl} />
-        <Segment padded>{review}</Segment>
+        <Segment padded>{description}</Segment>
       </Container>
     </>
   );

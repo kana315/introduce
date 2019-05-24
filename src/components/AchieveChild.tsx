@@ -2,7 +2,8 @@ import React from "react";
 import { Header, Image, Segment } from "semantic-ui-react";
 import styled from "styled-components";
 
-type Props = {
+export type AchieveChild = {
+  id: string | number;
   title: string;
   date: string;
   imageUrl?: string;
@@ -18,8 +19,6 @@ const DefaultImage = () => (
 );
 
 const AchieveImage: React.FC<{ imageUrl?: string }> = props => {
-  console.log(props);
-
   return typeof props.imageUrl !== "undefined" ? (
     <Image src={props.imageUrl} size="medium" />
   ) : (
@@ -27,7 +26,12 @@ const AchieveImage: React.FC<{ imageUrl?: string }> = props => {
   );
 };
 
-const Child: React.FC<Props> = ({ title, date, imageUrl, description }) => {
+const Child: React.FC<AchieveChild> = ({
+  title,
+  date,
+  imageUrl,
+  description
+}) => {
   return (
     <Container>
       <Header as="h1">
