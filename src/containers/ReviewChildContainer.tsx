@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import useReactRouter from "use-react-router";
 import { match as Match } from "react-router";
 import Client from "../api/client";
-import Child, { ReviewChild } from "../components/ReviewChild";
+import Child from "../components/ReviewChild";
+import { ReviewChild } from "../components/Review";
 
 const init: ReviewChild = { id: "", title: "", date: "", description: "" };
 

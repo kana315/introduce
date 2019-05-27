@@ -1,23 +1,7 @@
 import React from "react";
-import { Header, Image, Segment } from "semantic-ui-react";
+import { Header, Segment } from "semantic-ui-react";
 import styled from "styled-components";
-import { AchieveChild } from "../components/Achievement";
-
-const DefaultImage = () => (
-  <Image
-    src="https://react.semantic-ui.com/images/wireframe/image.png"
-    size="medium"
-    disabled
-  />
-);
-
-const AchieveImage: React.FC<{ imageUrl?: string }> = props => {
-  return typeof props.imageUrl !== "undefined" ? (
-    <Image src={props.imageUrl} size="medium" />
-  ) : (
-    <DefaultImage />
-  );
-};
+import { AchieveImage, AchieveChild } from "./Achievement";
 
 const Child: React.FC<AchieveChild> = ({
   title,

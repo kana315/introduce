@@ -25,7 +25,9 @@ const DefaultImage = () => (
   />
 );
 
-const ReviewImage: React.FC<{ imageUrl?: string }> = ({ imageUrl }) =>
+export const ReviewImage: React.FC<Pick<ReviewChild, "imageUrl">> = ({
+  imageUrl
+}) =>
   typeof imageUrl !== "undefined" ? (
     <Image src={imageUrl} size="medium" />
   ) : (

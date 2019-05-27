@@ -31,13 +31,14 @@ const DefaultImage = () => (
   />
 );
 
-const AchieveImage: React.FC<Pick<AchieveChild, "imageUrl">> = props => {
-  return typeof props.imageUrl !== "undefined" ? (
-    <Image src={props.imageUrl} size="medium" />
+export const AchieveImage: React.FC<Pick<AchieveChild, "imageUrl">> = ({
+  imageUrl
+}) =>
+  typeof imageUrl !== "undefined" ? (
+    <Image src={imageUrl} size="medium" />
   ) : (
     <DefaultImage />
   );
-};
 
 const CardComp: React.FC<AchieveChild> = ({ title, imageUrl, date, id }) => {
   const { history } = useReactRouter();
