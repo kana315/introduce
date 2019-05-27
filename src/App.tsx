@@ -1,13 +1,19 @@
 import React from "react";
+
+// lib
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./components/Home";
-import Achievement from "./components/Achievement";
-import Review from "./components/Review";
-import NoMatch from "./components/Nomatch";
-import Menu from "./components/Menu";
 import styled from "styled-components";
-import AchieveChild from "./components/AchieveChild";
-import ReviewChild from "./components/ReviewChild";
+
+// component
+import Menu from "./components/Menu";
+import NoMatch from "./components/Nomatch";
+
+// container
+import HomeContainer from "./containers/HomeContainer";
+import AchieveContainer from "./containers/AchieveContainer";
+import AchieveChildContainer from "./containers/AchieveChildContainer";
+import ReviewContainer from "./containers/ReviewContainer";
+import ReviewChildContainer from "./containers/ReviewChildContainer";
 
 const AppRouter: React.FC = () => {
   return (
@@ -15,11 +21,26 @@ const AppRouter: React.FC = () => {
       <Router>
         <Menu />
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/achievements" component={Achievement} />
-          <Route path="/achievement/:id" component={AchieveChild} />
-          <Route path="/reviews/" component={Review} />
-          <Route path="/review/:id" component={ReviewChild} />
+          <Route strict exact path="/" component={HomeContainer} />
+          <Route
+            strict
+            exact
+            path="/achievements"
+            component={AchieveContainer}
+          />
+          <Route
+            strict
+            exact
+            path="/achievements/:id"
+            component={AchieveChildContainer}
+          />
+          <Route strict exact path="/reviews" component={ReviewContainer} />
+          <Route
+            strict
+            exact
+            path="/reviews/:id"
+            component={ReviewChildContainer}
+          />
           <Route component={NoMatch} />
         </Switch>
       </Router>
