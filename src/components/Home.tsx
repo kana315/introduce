@@ -2,7 +2,7 @@ import React from "react";
 import { Header, Segment, Icon, Container } from "semantic-ui-react";
 import styled from "styled-components";
 
-export type Props = {
+export type IntroducePage = {
   title: string;
   subTitle: string;
   name: string;
@@ -15,7 +15,7 @@ const IntroduceImage = () => (
   <Icon circular color="teal" size="huge" name="paw" />
 );
 
-const Home: React.FC<Props> = ({
+const Home: React.FC<IntroducePage> = ({
   title,
   subTitle,
   name,

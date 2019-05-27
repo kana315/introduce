@@ -1,8 +1,14 @@
 import React from "react";
+
+// lib
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NoMatch from "./components/Nomatch";
-import Menu from "./components/Menu";
 import styled from "styled-components";
+
+// component
+import Menu from "./components/Menu";
+import NoMatch from "./components/Nomatch";
+
+// container
 import HomeContainer from "./containers/HomeContainer";
 import AchieveContainer from "./containers/AchieveContainer";
 import AchieveChildContainer from "./containers/AchieveChildContainer";

@@ -1,4 +1,5 @@
 import React from "react";
+import useReactRouter from "use-react-router";
 import {
   Card as SemanticCard,
   Header,
@@ -7,13 +8,13 @@ import {
   Button
 } from "semantic-ui-react";
 import styled from "styled-components";
-import useReactRouter from "use-react-router";
 
 export type AchieveChild = {
   id: string | number;
   title: string;
-  imageUrl?: string;
   date: string;
+  imageUrl?: string;
+  description: string;
 };
 
 export type Achieve = {
@@ -30,7 +31,7 @@ const DefaultImage = () => (
   />
 );
 
-const AchieveImage: React.FC<{ imageUrl?: string }> = props => {
+const AchieveImage: React.FC<Pick<AchieveChild, "imageUrl">> = props => {
   return typeof props.imageUrl !== "undefined" ? (
     <Image src={props.imageUrl} size="medium" />
   ) : (

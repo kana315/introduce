@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { match as Match } from "react-router";
-import Child, { ReviewChild } from "../components/ReviewChild";
-import Client from "../api/client";
 import useReactRouter from "use-react-router";
+import { match as Match } from "react-router";
+import Client from "../api/client";
+import Child, { ReviewChild } from "../components/ReviewChild";
 
-const id = "";
-const title = "";
-const date = "";
-const description = "";
-const init: ReviewChild = { id, title, date, description };
+const init: ReviewChild = { id: "", title: "", date: "", description: "" };
 
 const ReviewChildContainer: React.FC = () => {
-  const { match }: { match: Match<{ id: string }> } = useReactRouter();
+  const { match } = useReactRouter<{ match: Match<{ id: string }> }>();
   const [state, setReview] = useState(init);
   useEffect(() => {
     Client<ReviewChild>(match.url).then(res => {

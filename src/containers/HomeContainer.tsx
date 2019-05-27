@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Home, { Props as Introduce } from "../components/Home";
-import Client from "../api/client";
-import { match as Match } from "react-router";
 import useReactRouter from "use-react-router";
+import { match as Match } from "react-router";
+import Client from "../api/client";
+import Home, { IntroducePage } from "../components/Home";
 
-const init: Introduce = {
+const init: IntroducePage = {
   title: "",
   subTitle: "",
   name: "",
@@ -14,10 +14,10 @@ const init: Introduce = {
 };
 
 const HomeContainer: React.FC = () => {
-  const { match }: { match: Match } = useReactRouter();
-  const [state, setIntroduce] = useState<Introduce>(init);
+  const { match } = useReactRouter<{ match: Match }>();
+  const [state, setIntroduce] = useState<IntroducePage>(init);
   useEffect(() => {
-    Client<Introduce>(`${match.url}`).then(res => {
+    Client<IntroducePage>(`${match.url}`).then(res => {
       setIntroduce(res);
     });
   }, [match.url]);

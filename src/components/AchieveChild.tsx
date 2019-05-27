@@ -1,14 +1,7 @@
 import React from "react";
 import { Header, Image, Segment } from "semantic-ui-react";
 import styled from "styled-components";
-
-export type AchieveChild = {
-  id: string | number;
-  title: string;
-  date: string;
-  imageUrl?: string;
-  description: string;
-};
+import { AchieveChild } from "../components/Achievement";
 
 const DefaultImage = () => (
   <Image

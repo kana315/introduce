@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Achievements, { Achieve, AchieveChild } from "../components/Achievement";
-import Client from "../api/client";
-import { match as Match } from "react-router";
 import useReactRouter from "use-react-router";
-
-const title = "";
-const subTitle = "";
-
-const achievements: AchieveChild[] = [];
+import { match as Match } from "react-router";
+import Client from "../api/client";
+import Achievements, { Achieve } from "../components/Achievement";
 
 const init: Achieve = {
-  title,
-  subTitle,
-  achievements
+  title: "",
+  subTitle: "",
+  achievements: []
 };
 
 const AchieveContainer: React.FC = () => {
-  const { match }: { match: Match } = useReactRouter();
+  const { match } = useReactRouter<{ match: Match }>();
   const [state, setAchieve] = useState(init);
   useEffect(() => {
     Client<Achieve>(`${match.url}`).then(achievement => {
